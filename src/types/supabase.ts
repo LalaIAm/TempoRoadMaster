@@ -9,7 +9,104 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      stops: {
+        Row: {
+          created_at: string | null
+          enable_row_level_security: boolean | null
+          estimated_duration: string | null
+          id: string
+          location: string
+          notes: string | null
+          order_index: number
+          position: Json
+          trip_id: string | null
+          weather_condition:
+            | Database["public"]["Enums"]["weather_condition"]
+            | null
+          weather_temp: number | null
+        }
+        Insert: {
+          created_at?: string | null
+          enable_row_level_security?: boolean | null
+          estimated_duration?: string | null
+          id?: string
+          location: string
+          notes?: string | null
+          order_index: number
+          position: Json
+          trip_id?: string | null
+          weather_condition?:
+            | Database["public"]["Enums"]["weather_condition"]
+            | null
+          weather_temp?: number | null
+        }
+        Update: {
+          created_at?: string | null
+          enable_row_level_security?: boolean | null
+          estimated_duration?: string | null
+          id?: string
+          location?: string
+          notes?: string | null
+          order_index?: number
+          position?: Json
+          trip_id?: string | null
+          weather_condition?:
+            | Database["public"]["Enums"]["weather_condition"]
+            | null
+          weather_temp?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "stops_trip_id_fkey"
+            columns: ["trip_id"]
+            isOneToOne: false
+            referencedRelation: "trips"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      trips: {
+        Row: {
+          created_at: string | null
+          duration: string | null
+          enable_row_level_security: boolean | null
+          fuel_cost: string | null
+          id: string
+          map_center: Json | null
+          title: string
+          total_distance: string | null
+          updated_at: string | null
+          user_id: string | null
+          zoom: number | null
+        }
+        Insert: {
+          created_at?: string | null
+          duration?: string | null
+          enable_row_level_security?: boolean | null
+          fuel_cost?: string | null
+          id?: string
+          map_center?: Json | null
+          title: string
+          total_distance?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+          zoom?: number | null
+        }
+        Update: {
+          created_at?: string | null
+          duration?: string | null
+          enable_row_level_security?: boolean | null
+          fuel_cost?: string | null
+          id?: string
+          map_center?: Json | null
+          title?: string
+          total_distance?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+          zoom?: number | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -18,7 +115,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      weather_condition: "sunny" | "cloudy" | "rainy"
     }
     CompositeTypes: {
       [_ in never]: never
